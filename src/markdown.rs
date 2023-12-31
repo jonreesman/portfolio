@@ -25,7 +25,7 @@ fn clean_latex(file: String) -> String {
                         return char;
                     }
                     if char == "*" {
-                        return "\\cdot";
+                        return " \\cdot ";
                     }
                     return char;
                 }).collect::<Vec<&str>>().join("");
