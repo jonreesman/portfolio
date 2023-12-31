@@ -1,0 +1,29 @@
+<div class="w-screen h-20 border-2 bg-slate-100 shadow-lg text-xl z-[1000]">
+    <div class="h-full w-full flex flex-row justify-evenly items-center">
+        <a
+        href="/">
+            <div class="text-2xl font-bold">
+                Jon Reesman
+            </div>
+        </a>
+        <div class="h-full w-3/6 flex flex-row justify-evenly items-center">
+            {% for route in crate::get_routes() %}
+            <a
+            href={{ route.route }}
+            >
+            {{ route.name }}
+        </a>
+        {% endfor %}
+        </div>
+        <div class="flex flex-row w-12 justify-between">
+            <a
+                href="https://www.linkedin.com/in/jon-reesman/">
+                <img class="h-4" src="/assets/linkedin.svg" />
+            </a>
+            <a
+                href="https://github.com/jonreesman">
+                <img class="h-4" src="/assets/github-mark.svg" />
+            </a>
+        </div>
+    </div>
+</div>
