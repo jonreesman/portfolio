@@ -1,3 +1,4 @@
+# Cost Functions
 * Also known as a loss function
 
 * Must be an average so that it outputs a single value

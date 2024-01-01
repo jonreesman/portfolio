@@ -1,3 +1,4 @@
+# Cross Entropy Loss Function
 * For classification problems, we often use the **cross entropy** loss function
 
 	* Assumes model predicts a probability distribution p(y=i) for eacg class i=1,2,...,C

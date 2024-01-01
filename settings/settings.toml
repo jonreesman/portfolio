@@ -1,0 +1,63 @@
+[notes]
+
+[[notes.categories]]
+name = "Neural Networks Basics"
+
+[[notes.categories.notes]]
+route = "/notes/neural-networks-basics/perceptron-model.md"
+name = "Perceptron Model"
+
+[[notes.categories.notes]]
+route = "/notes/neural-networks-basics/multi-layer-perceptron-model.md"
+name = "Mutli-layer Perceptron Model"
+
+[[notes.categories.notes]]
+route = "/notes/neural-networks-basics/activation-functions.md"
+name = "Activation Functions"
+
+[[notes.categories.notes]]
+route = "/notes/neural-networks-basics/multi-class-activation-functions.md"
+name = "Multi-Class Activation Functions"
+
+[[notes.categories.notes]]
+route = "/notes/neural-networks-basics/cost-functions.md"
+name = "Cost Functions"
+
+[[notes.categories.notes]]
+route = "/notes/neural-networks-basics/gradient-descent.md"
+name = "Gradient Descent"
+
+[[notes.categories.notes]]
+route = "/notes/neural-networks-basics/cross-entropy.md"
+name = "Cross Entropy Loss Function"
+
+[[notes.categories.notes]]
+route = "/notes/neural-networks-basics/back-propogation.md"
+name = "Back Propogation"
+
+[[notes.categories.notes]]
+route = "/notes/neural-networks-basics/recurrent-neural-networks.md"
+name = "Recurrent Neural Networks"
+
+[[notes.categories.notes]]
+route = "/notes/neural-networks-basics/LSTMs.md"
+name = "Long Short-Term Memory RNNs"
+
+[[notes.categories]]
+name = "Neural Networks Proofs"
+
+[[notes.categories.notes]]
+route = "/notes/neural-networks-proofs/softmax-activation-function.md"
+name = "Softmax Activation Function"
+
+[[notes.categories.note]]
+route = "/notes/neural-networks-proofs/categorical-cross-entropy-loss.md"
+name = "Categorical Cross Entropy Loss Function"
+
+[[notes.categories.notes]]
+route = "/notes/neural-networks-proofs/ccle-&-softmax-combined.md"
+name = "CCLE and Softmax Combined"
+
+[[notes.categories.notes]]
+route = "/notes/neural-networks-proofs/stochastic-gradient-descent.md"
+name = "Stochastic Gradient Descent"

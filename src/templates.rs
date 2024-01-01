@@ -1,4 +1,4 @@
-use crate::routes::Route;
+use crate::routes::NoteState;
 
 use axum::{
     http::StatusCode,
@@ -20,7 +20,7 @@ pub struct HelloTemplate;
 #[derive(Template)]
 #[template(path = "notes.html")]
 pub struct NotesTemplate {
-    pub notes: Vec<Route>
+    pub note_state: NoteState
 }
 /// A wrapper type that we'll use to encapsulate HTML parsed by askama into valid HTML for axum to serve.
 pub struct HtmlTemplate<T>(pub T);

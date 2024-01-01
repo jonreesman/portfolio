@@ -9,7 +9,7 @@
         <div class="h-full w-3/6 flex flex-row justify-evenly items-center">
             {% for route in crate::routes::get_routes() %}
             <a
-            href={{ route.route }}
+            href={{ route.path }}
             >
             {{ route.name }}
         </a>

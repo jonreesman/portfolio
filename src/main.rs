@@ -3,13 +3,13 @@
 mod markdown;
 mod templates;
 mod routes;
+mod config;
 
 use std::sync::Arc;
 use axum::{
     routing::get,
     Router
 };
-use tokio::sync::Mutex;
 use tower_http::services::ServeDir;
 use tracing::info;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
@@ -28,8 +28,7 @@ async fn main() {
     info!("initializing router...");
 
     let app_state = Arc::new(routes::AppState {
-        todos: Mutex::new(vec![]),
-        note_routes: routes::get_notes()
+        note_state: routes::get_notes()
     });
 
 
@@ -43,7 +42,7 @@ async fn main() {
         .nest("/api", api_router)
         .route("/", get(routes::hello))
         .route("/notes", get(routes::notes))
-        .route("/notes/:id", get(routes::notes_md))
+        .route("/notes/:category/:file", get(routes::notes_md))
         .with_state(app_state)
         .nest_service(
             "/assets",

@@ -1,3 +1,4 @@
+# Long Short-Term Memory Recurrent Neural Networks
 One of the issues we face with RNNs is that after some time, the network will begin to "forget" the initial inputs because information is lost at each step in the RNN, which means we need some form of long-term memory for the network.
 
   
@@ -9,9 +10,7 @@ Enter the LSTM, a special neuron that addresses the long-term memory and vanishi
 Instead of a single layer, a typical LSTM will actually have 4 layers.
 
   
-
-![](LSTM-graphic.png)
-
+![](/assets/resources/LSTM-graphic.png)
   
 
 In general, we have 4 components of the LSTM:

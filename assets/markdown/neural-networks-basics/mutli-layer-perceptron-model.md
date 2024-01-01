@@ -1,3 +1,4 @@
+# Multi-layer Perceptron Model
 * Fully connected layer
 
 	* Every neuron in one layer feeds into every neuron in the next layer

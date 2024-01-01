@@ -1,50 +1,80 @@
 #[allow(dead_code)]
 
 use std::sync::Arc;
-use std::fs;
 use axum::{
     extract::{Path, State},
     response::IntoResponse,
 };
-use inflector::Inflector;
 use tokio::sync::Mutex;
 
 use crate::templates;
+use crate::config;
 use crate::markdown::get_markdown;
-use crate::routes;
 
 
 pub struct AppState {
-    pub todos: Mutex<Vec<String>>,
-    pub note_routes: Vec<routes::Route>
+    pub note_state: NoteState
 }
 
 #[derive(Clone)]
 pub struct Route {
     pub name: String,
-    pub route: String,
-    pub shorthand: String
+    pub path: String,
 }
 
 impl Route {
-    fn new(name: &str, route: &str, shorthand: Option<&str>) -> Self {
-        let mut shorthand_route = "";
-        if shorthand.is_some() {
-            shorthand_route = shorthand.unwrap();
-        }
+    fn new(name: &str, path: &str) -> Self {
         Route {
             name: name.to_string(),
-            route: route.to_string(),
-            shorthand: shorthand_route.to_string(),
+            path: path.to_string(),
+        }
+    }
+}
+
+#[derive(Clone)]
+pub struct Note {
+    pub route: Route,
+    pub name: String,
+    pub category: String,
+    pub shorthand: String,
+}
+
+impl Note {
+    fn new(route: Route, category: String, shorthand: String) -> Self {
+        let name = route.clone().name;
+        Note {
+            route,
+            name,
+            category,
+            shorthand,
+        }
+    }
+}
+
+#[derive(Clone)]
+pub struct NoteCategory {
+    pub name: String,
+    pub notes: Vec<Note>
+}
+
+#[derive(Clone)]
+pub struct NoteState {
+    pub categories: Vec<NoteCategory>,
+}
+
+impl NoteState {
+    fn new(categories: Vec<NoteCategory>) -> Self {
+        NoteState {
+            categories
         }
     }
 }
 
 pub fn get_routes() -> [Route; 3] {
     [
-        Route::new("About", "/about", None),
-        Route::new("Notes", "/notes", None),
-        Route::new("Code", "/code", None),
+        Route::new("About", "/about"),
+        Route::new("Notes", "/notes"),
+        Route::new("Code", "/code"),
     ]
 }
 
@@ -56,14 +86,14 @@ pub async fn hello() -> impl IntoResponse {
 pub async fn notes(State(state): State<Arc<AppState>>) -> impl IntoResponse {
 
     let template = templates::NotesTemplate {
-        notes: state.note_routes.clone(),
+        note_state: state.note_state.clone(),
     };
     templates::HtmlTemplate(template)
 }
 
 
-pub async fn notes_md(Path(id): Path<String>) -> impl IntoResponse {
-    let template = templates::MarkdownTemplate { safe_html: get_markdown(id)};
+pub async fn notes_md(Path((category, file)): Path<(String, String)>) -> impl IntoResponse {
+    let template = templates::MarkdownTemplate { safe_html: get_markdown(format!("{}/{}", category, file))};
     templates::HtmlTemplate(template)
 }
 
@@ -71,20 +101,20 @@ pub async fn hello_from_the_server() -> &'static str {
     "Hello!"
 }
 
-pub fn get_notes() -> Vec<Route> {
-    let paths = fs::read_dir("./assets/markdown").unwrap();
-
-    let mut routes = vec![];
-    for path in paths {
-        let route_str = path.unwrap().path().display().to_string().to_owned();
-        if route_str.contains(".md") {
-            let name_with_filetype = route_str.split("/").last().unwrap();
-            let name_without_filetype = name_with_filetype.replace(".md", "");
-            let name = name_with_filetype.replace("-", " ").replace(".md", "").to_title_case();
-            routes.push(
-                Route::new(&name, &format!("/notes/{}", name_with_filetype), Some(&format!("/notes/{}", name_without_filetype)))
-            );
+pub fn get_notes() -> NoteState {
+    let data = config::get_config();
+    let mut categories: Vec<NoteCategory> = vec![];
+    for category in data.notes.categories.iter() {
+        let mut notes: Vec<Note> = vec![];
+        for route in category.notes.iter() {
+            let name_without_filetype = route.name.split("/").last().unwrap().replace(".md", "");
+            notes.push(Note::new(Route::new(&route.name, &route.route), category.name.clone(), format!("/notes/{}", name_without_filetype),))
         }
+        categories.push(NoteCategory {
+            name: category.name.clone(),
+            notes
+        })
     }
-    routes
+
+    NoteState::new(categories)
 }

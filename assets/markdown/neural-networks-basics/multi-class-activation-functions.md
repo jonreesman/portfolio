@@ -1,3 +1,4 @@
+# Multiclass Activation Functions
 * Many classification functions are multi-class (eg, not "cat" or "not cat")
 
 *  2 types of multi-class situations

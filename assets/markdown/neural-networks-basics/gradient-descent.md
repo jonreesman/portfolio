@@ -1,4 +1,4 @@
-### Gradient Descent
+# Gradient Descent
 
 * Imagine we are trying to find the trough of a sloped curve using derivatives
 
