@@ -69,23 +69,23 @@ So now:
 $$ \frac{\partial S_{i,j}}{\partial z_{i,k}} = 
 	\Biggl\{
 	\begin{matrix}
-		S_{i,j}\cdot(1-S_{i,k}) , & \text{j=k} \\ \\
+		S_{i,j}\cdot(1-S_{i,k}) , & j=k \\ \\
 		-S_{i,j} \cdot S_{i,k} , & j \ne k 
 	\end{matrix}
-\quad (1) $$
+\quad \left( 1 \right) $$
 We can amend this further: 
 $$ \frac{\partial S_{i,j}}{\partial z_{i,k}} = 
 	\Biggl\{
 	\begin{matrix}
-		S_{i,j}\cdot(1-S_{i,k}) , & \text{j=k} \\ \\
+		S_{i,j}\cdot(1-S_{i,k}) , & j=k \\ \\
 		S_{i,j} \cdot (0-S_{i,k}) , & j \ne k 
 	\end{matrix}
-\quad (2) $$
+\quad \left( 2 \right) $$
 Now that they are effectively the same, differing by only one value, we can pply the *Kronecker delta* function:
 $$ \delta_{i,j} =  
 \Biggl\{
 \begin{matrix}
-	1, & \text{i=j} \\ \\
+	1, & i=j \\ \\
 	0 , & i \ne j 
 \end{matrix}
 $$
@@ -99,7 +99,7 @@ $$
 
 ### Python
 Now, implementing it in python:
-```python
+```Python
 class Softmax:
 	def backwards(self, dvalues):
 		self.dinputs = np.empty_like(dvalues)

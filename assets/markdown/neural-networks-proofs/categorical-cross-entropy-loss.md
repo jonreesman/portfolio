@@ -22,7 +22,7 @@ This equation is more valuable for calculating gradient descent because it takes
 
 Solving for the derivative of the log, which is the reciprocal of its parameters, and using Lagrange's notation (prime notation):
 
-$$ f(x) = log(h(x))\ \rightarrow f'(x) = \frac{1}{h(x)} \cdot h'(x)  $$
+$$ f\left(x\right) = log\left(h\left(x\right)\right)\ \rightarrow f'\left(x\right) = \frac{1}{h\left (x \right) } \cdot h'\left( x \right)  $$
 We can solve it further (now using Leibniz's notation):
 $$ f(x) = log(x) \rightarrow \frac{d}{dx}f(x) = \frac{d}{dx}log(x) = \frac{1}{x}\cdot\frac{d}{dx}x = \frac{1}{x}\cdot1 = \frac{1}{x} $$
 Now that we have the derivative, lets apply it:

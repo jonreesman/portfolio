@@ -8,7 +8,7 @@ route = "/notes/neural-networks-basics/perceptron-model.md"
 name = "Perceptron Model"
 
 [[notes.categories.notes]]
-route = "/notes/neural-networks-basics/multi-layer-perceptron-model.md"
+route = "/notes/neural-networks-basics/mutli-layer-perceptron-model.md"
 name = "Mutli-layer Perceptron Model"
 
 [[notes.categories.notes]]
@@ -50,7 +50,7 @@ name = "Neural Networks Proofs"
 route = "/notes/neural-networks-proofs/softmax-activation-function.md"
 name = "Softmax Activation Function"
 
-[[notes.categories.note]]
+[[notes.categories.notes]]
 route = "/notes/neural-networks-proofs/categorical-cross-entropy-loss.md"
 name = "Categorical Cross Entropy Loss Function"
 
